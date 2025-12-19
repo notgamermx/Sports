@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Sports Archive | Brutalist Edition</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="loader" class="fixed inset-0 bg-black z-[2000] flex items-center justify-center text-white text-6xl font-bold mono">
+        <span class="counter">000</span>%
+    </div>
+
+    <nav class="fixed top-0 w-full z-40 bg-[var(--bg-color)] b-bottom flex justify-between items-stretch h-16 transition-colors duration-300">
+        <div class="flex items-center px-6 b-right border-dynamic font-bold text-xl tracking-tighter cursor-pointer" onclick="closeModal()">
+            IND.SPORTS™
+        </div>
+        <div class="hidden md:flex items-center grow justify-center mono text-sm opacity-70">
+            <span class="mx-4">50 DISCIPLINES</span>
+            <span class="mx-4">//</span>
+            <span class="mx-4">SELECT TO VIEW</span>
+        </div>
+        
+        <div class="flex">
+            <button id="theme-btn" class="px-6 b-left border-dynamic hover:bg-[var(--text-color)] hover:text-[var(--bg-color)] transition-colors mono text-xs font-bold uppercase" onclick="toggleTheme()">
+                Light Mode
+            </button>
+            <div class="flex items-center px-6 b-left border-dynamic font-bold cursor-pointer hover:bg-[var(--text-color)] hover:text-[var(--bg-color)] transition-colors">
+                MENU
+            </div>
+        </div>
+    </nav>
+
+    <header class="min-h-screen pt-20 pb-10 px-4 md:px-10 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute right-10 top-32 w-32 h-32 border border-[var(--grid-color)] rounded-full flex items-center justify-center animate-spin-slow opacity-50">
+            <div class="w-2 h-2 bg-[var(--text-color)] rounded-full"></div>
+        </div>
+        <div class="mt-10">
+            <p class="mono text-sm mb-4"><span class="reveal-text inline-block">/// THE ARCHIVE</span></p>
+            <div class="mega-text">
+                <div class="reveal-parent overflow-hidden"><div class="reveal-child">INDIAN</div></div>
+                <div class="reveal-parent overflow-hidden"><div class="reveal-child text-[var(--accent-color)]">SPORTS</div></div>
+                <div class="reveal-parent overflow-hidden"><div class="reveal-child outline-text">LEGACY</div></div>
+            </div>
+        </div>
+        <div class="flex justify-between items-end b-top border-dynamic pt-4">
+            <div class="mono text-xs md:text-sm max-w-xs">SCROLL TO EXPLORE THE 50 PILLARS OF INDIAN ATHLETICS.</div>
+            <div class="text-4xl animate-bounce">↓</div>
+        </div>
+    </header>
+
+    <section class="b-top b-bottom border-dynamic">
+        <div class="marquee-wrapper">
+            <div class="marquee-inner">
+                <span class="marquee-item">CRICKET * HOCKEY * KABADDI * CHESS * ATHLETICS * FOOTBALL * BADMINTON * WRESTLING * BOXING * SHOOTING * ARCHERY * TENNIS * KHO KHO * MALLAKHAMB * </span>
+                <span class="marquee-item">CRICKET * HOCKEY * KABADDI * CHESS * ATHLETICS * FOOTBALL * BADMINTON * WRESTLING * BOXING * SHOOTING * ARCHERY * TENNIS * KHO KHO * MALLAKHAMB * </span>
+            </div>
+        </div>
+    </section>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 min-h-screen relative">
+        
+        <div class="b-right border-dynamic flex flex-col" id="sports-list">
+            </div>
+
+        <div class="bg-[var(--bg-color)] hidden md:flex items-center justify-center sticky top-0 h-screen overflow-hidden transition-colors duration-300" id="scene-container">
+            <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+                <span class="text-[30vw] font-bold text-[var(--text-color)]">IND</span>
+            </div>
+            <div class="scene">
+                <div class="cube">
+                    <div class="face front">1983<span class="mono">GLORY</span></div>
+                    <div class="face back">2024<span class="mono">FUTURE</span></div>
+                    <div class="face right">GOLD<span class="mono">STANDARD</span></div>
+                    <div class="face left">SOIL<span class="mono">KABADDI</span></div>
+                    <div class="face top">CHESS<span class="mono">ORIGIN</span></div>
+                    <div class="face bottom">YOGA<span class="mono">ROOTS</span></div>
+                </div>
+            </div>
+            <div class="absolute bottom-6 left-6 mono text-xs opacity-70">[ MOUSE OVER TO ROTATE ]</div>
+        </div>
+    </section>
+
+    <div id="sport-modal" class="modal-page">
+        <button onclick="closeModal()" class="fixed top-20 right-6 z-50 bg-[var(--text-color)] text-[var(--bg-color)] px-6 py-2 font-bold hover:bg-[var(--accent-color)] transition-colors border border-[var(--bg-color)]">
+            CLOSE X
+        </button>
+
+        <div class="pt-24 px-4 md:px-12 pb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="border-2 border-[var(--text-color)] p-2 bg-[var(--bg-color)] shadow-[10px_10px_0px_0px_var(--text-color)] transition-colors duration-300">
+                    <img id="modal-image" src="" alt="Sport Image" class="w-full h-[60vh] object-cover grayscale contrast-125 filter">
+                    <div class="p-2 b-top border-dynamic mono text-xs flex justify-between">
+                        <span>FIG 1.1</span>
+                        <span id="modal-img-caption">PLAYER ACTION</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center">
+                    <h1 id="modal-title" class="text-6xl md:text-8xl font-black uppercase leading-[0.8] mb-6">SPORT NAME</h1>
+                    <div class="w-20 h-2 bg-[var(--accent-color)] mb-8"></div>
+                    
+                    <div class="space-y-6 text-lg">
+                        <div>
+                            <span class="mono text-xs block mb-1 opacity-50">/// ORIGINS & HISTORY</span>
+                            <p id="modal-desc" class="font-bold leading-tight">Description goes here.</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 b-top border-dynamic pt-4">
+                            <div>
+                                <span class="mono text-xs block mb-1 opacity-50">KEY PLAYER</span>
+                                <p id="modal-player" class="text-xl font-black uppercase">Name</p>
+                            </div>
+                            <div>
+                                <span class="mono text-xs block mb-1 opacity-50">ACHIEVEMENT</span>
+                                <p id="modal-stat" class="text-xl font-black uppercase">Stat</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-[var(--text-color)] text-[var(--bg-color)] pt-20 pb-6 px-6 b-top border-dynamic transition-colors duration-300">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end">
+            <h3 class="text-6xl md:text-9xl font-bold leading-none">JAI<br>HIND</h3>
+            <div class="flex flex-col gap-2 mono text-sm text-right">
+                <span>© 2024 INDIAN SPORTS ARCHIVE</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
